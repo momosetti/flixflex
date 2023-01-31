@@ -1,18 +1,30 @@
-import React from "react";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useUserAuth } from "@/hooks/useAuthContext";
+import Link from "next/link";
 
 export default function NavBar() {
+  const { logOut, user } = useUserAuth();
+  const router = useRouter();
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+      route.push("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
       <div class="container flex flex-wrap items-center justify-between mx-auto">
-        <a
-          href="https://flowbite.com/"
-          class="flex items-center w-[7%] justify-between"
-        >
+        <Link href="/" class="flex items-center w-[7%] justify-between">
           <div class="arrow_logo items-center "></div>
           <span class=" flex self-center text-xl font-semibold whitespace-nowrap dark:text-white">
             FlixFlex
           </span>
-        </a>
+        </Link>
         <div class="flex md:order-2">
           <button
             type="button"
@@ -54,13 +66,22 @@ export default function NavBar() {
               </svg>
               <span class="sr-only">Search icon</span>
             </div>
-            <form action="/search">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                router.push(`/search?q=${encodeURIComponent(searchInput)}`);
+              }}
+            >
               <input
+                onChange={(e) => {
+                  setSearchInput(e.target.value);
+                }}
+                value={searchInput}
                 type="text"
                 id="search-navbar"
-                name="search-query"
-                class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search..."
+                name="q"
+                class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search for your show"
               />
             </form>
           </div>
@@ -116,30 +137,41 @@ export default function NavBar() {
           </div>
           <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <a
-                href="#"
-                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+              <Link
+                href="/"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 aria-current="page"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
-                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              <Link
+                href="/movies"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
-                About
-              </a>
+                Movies
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
-                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              <Link
+                href="/tv-shows"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
-                Services
-              </a>
+                Tv Shows
+              </Link>
             </li>
+            {user ? (
+              <li>
+                <a
+                  href="#"
+                  onClick={handleLogOut}
+                  class="block py-2 pl-3 pr-4 text-primary-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >
+                  Logout
+                </a>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>
