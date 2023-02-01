@@ -6,16 +6,20 @@ import ProtectedRoute from "@/components/protectedRoute";
 import axios from "axios";
 import DocumentHead from "@/components/documentHead";
 import dynamic from "next/dynamic";
+import Loader from "@/components/loader";
 
 const DynamicShowCard = dynamic(() => import("@/components/showCard"));
 export default function SearchPage() {
   const [searchResult, setSearchResult] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(true);
+
   const router = useRouter();
   const { q, page = "1" } = router.query;
 
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(`/api/search?q=${q}&page=${page}`);
+      setIsLoading(false);
       setSearchResult(response.data);
     }
     fetchData();
@@ -32,18 +36,26 @@ export default function SearchPage() {
             </h1>
           </div>
           <div className="grid grid-cols-4 gap-4 my-3">
-            {searchResult?.results?.map((show) =>
-              show.media_type !== "person" ? (
-                <DynamicShowCard
-                  key={show.id}
-                  movieData={show}
-                  mediaType={show.media_type}
-                />
-              ) : null
+            {isLoading ? (
+              <Loader />
+            ) : (
+              searchResult?.results?.map((show) =>
+                show.media_type !== "person" ? (
+                  <DynamicShowCard
+                    key={show.id}
+                    movieData={show}
+                    mediaType={show.media_type}
+                  />
+                ) : null
+              )
             )}
+            {}
           </div>
           <div className="my-16 flex items-center justify-center">
             <Link
+              onClick={() => {
+                if (Number(page) > 1) setIsLoading(true);
+              }}
               href={
                 Number(page) > 1
                   ? `/search?q=${q}&page=${Number(page) - 1}`
@@ -69,6 +81,9 @@ export default function SearchPage() {
               Previous
             </Link>
             <Link
+              onClick={() => {
+                if (page < searchResult?.total_pages) setIsLoading(true);
+              }}
               href={
                 page < searchResult?.total_pages
                   ? `/search?q=${q}&page=${Number(page) + 1}`
