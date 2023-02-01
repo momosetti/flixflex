@@ -1,38 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FlixFlex
 
-## Getting Started
+A movie app built with Next.js and TailwindCSS using Firebase for authentication.
 
-First, run the development server:
+## Deployment
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The project is deployed on Vercel at the following link: https://flixflex-app.vercel.app
+To test the app use the following credentials to login:
+email: `demo@example.com`
+password: `Demo2023!`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- [Next.js](https://nextjs.org/) - A React framework for building fast and scalable web applications.
+- [TailwindCSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
+- [Firebase](https://firebase.google.com/) - A Backend-as-a-Service (BaaS) platform for authentication and real-time data management.
+- [The Movie Database (TMDb) API](https://www.themoviedb.org/documentation/api) - A RESTful API for accessing movie and TV show information.
+- [Yarn](https://yarnpkg.com/) - A package manager for managing dependencies and project setup.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Why These Technologies Were Chosen
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**Next.js** was chosen for its ability to provide server-side rendering and optimized performance. This is important for delivering a fast and responsive user experience, especially for a movie app that requires fetching and rendering large amounts of data. Also this is important for FlixFlex because it helps us avoid exposing the TMDb API key, and use the `api` folder in Next.js to create custom APIs.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**TailwindCSS** was chosen for its utility-first approach to CSS, allowing for rapid development of custom designs. This was crucial in order to meet the project's deadline and ensure a consistent design across all pages.
 
-## Learn More
+**Firebase** was chosen for its ease of use and robust authentication features. It allowed for a simple and secure login process for users, without the need for building a backend from scratch.
 
-To learn more about Next.js, take a look at the following resources:
+**The TMDb API** was chosen for its extensive library of movie and TV show information, as well as its robust documentation and easy integration into the app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Yarn** was chosen as the package manager due to its speed and reliability, as well as its ability to better handle conflicts and dependencies compared to npm.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Prerequisites
 
-## Deploy on Vercel
+Before running the project locally, you will need to create a `.env` file in the root directory and add your TMDb API key as `TMDB_API_KEY`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How to Run the Project Locally
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To run FlixFlex locally, follow these steps:
+
+1.  Clone the repository `git clone https://github.com/momosetti/FlixFlex.git`
+2.  Navigate to the project directory `cd FlixFlex`
+3.  Install the dependencies `yarn install`
+4.  Start the development server `yarn dev`
+5.  Open your browser and navigate to `http://localhost:3000`
+
+## Features
+
+- Search movies or TV shows
+- View movie or TV show details
+- View the top rated movies and TV shows
+- Watch trailers of movies or TV shows
+- Login using Firebase
+
+## Contributing
+
+This project is open to contributions and improvements. If you have an idea or a bug fix, please feel free to open a pull request.
