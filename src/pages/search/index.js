@@ -31,7 +31,7 @@ export default function SearchPage() {
               We find {searchResult?.total_results} results for your search
             </h1>
           </div>
-          <div classNameName="grid grid-cols-4 gap-4 my-3">
+          <div className="grid grid-cols-4 gap-4 my-3">
             {searchResult?.results?.map((show) =>
               show.media_type !== "person" ? (
                 <DynamicShowCard
@@ -42,7 +42,7 @@ export default function SearchPage() {
               ) : null
             )}
           </div>
-          <div classNameName="my-16 flex items-center justify-center">
+          <div className="my-16 flex items-center justify-center">
             <Link
               href={
                 Number(page) > 1
