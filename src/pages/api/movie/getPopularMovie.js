@@ -4,7 +4,7 @@ import { API_ENTRYPOINT } from "@/utils/constants";
 export default async function handler(req, res) {
   const config = {
     method: "get",
-    url: `${API_ENTRYPOINT}/3/movie/popular?api_key=${process.env.TMDB_API_KEY}`,
+    url: `${API_ENTRYPOINT}/movie/popular?api_key=${process.env.TMDB_API_KEY}`,
   };
 
   try {
