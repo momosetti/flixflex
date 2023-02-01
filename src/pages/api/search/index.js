@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_ENTRYPOINT } from "@/utils/constants";
 
 export default async function handler(req, res) {
   const { q } = req.query;
@@ -9,7 +10,7 @@ export default async function handler(req, res) {
   }
   const config = {
     method: "get",
-    url: `https://api.themoviedb.org/3/search/multi?api_key=8f52ff60fc237845607efe9791fdb6cb&query=${q}&page=${page}`,
+    url: `${API_ENTRYPOINT}/search/multi?api_key=${process.env.TMDB_API_KEY}&query=${q}&page=${page}`,
   };
 
   try {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_ENTRYPOINT } from "@/utils/constants";
-const APIKey = process.env.TMDB_API_KEY;
+
 export default async function handler(req, res) {
   const { id } = req.query;
   const config = {

@@ -1,10 +1,11 @@
 import axios from "axios";
+import { API_ENTRYPOINT } from "@/utils/constants";
 
 export default async function handler(req, res) {
   const { id } = req.query;
   const config = {
     method: "get",
-    url: `https://api.themoviedb.org/3/tv/${id}?api_key=8f52ff60fc237845607efe9791fdb6cb`,
+    url: `${API_ENTRYPOINT}/tv/${id}?api_key=${process.env.TMDB_API_KEY}`,
   };
 
   try {

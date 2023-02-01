@@ -1,11 +1,10 @@
 import axios from "axios";
-import { fetchAPI } from "../../../utils/helpers";
+import { API_ENTRYPOINT } from "@/utils/constants";
 
-const APIKey = process.env.TMDB_API_KEY;
 export default async function handler(req, res) {
   const config = {
     method: "get",
-    url: "https://api.themoviedb.org/3/movie/top_rated?api_key=8f52ff60fc237845607efe9791fdb6cb",
+    url: `${API_ENTRYPOINT}/movie/top_rated?api_key=${process.env.TMDB_API_KEY}`,
   };
 
   try {
