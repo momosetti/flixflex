@@ -3,9 +3,11 @@ import NavBar from "@/components/navBar";
 import ShowCard from "@/components/showCard";
 import ProtectedRoute from "@/components/protectedRoute";
 import DocumentHead from "@/components/documentHead";
-export default function TopTvPage() {
+import Loader from "@/components/loader";
+export default function TvPage() {
   const [topMovies, setTopMovie] = useState(null);
   const [popularTv, setPopluarTv] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -15,10 +17,14 @@ export default function TopTvPage() {
       setTopMovie(results.slice(0, 5));
       const PopularTvdata = await fetch("/api/tv/getPopularTv");
       const reponse = await PopularTvdata.json();
+      setIsLoading(false);
       setPopluarTv(reponse.results.slice(0, 10));
     }
     fetchData();
   }, []);
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <DocumentHead title={"Tv Shows"} />

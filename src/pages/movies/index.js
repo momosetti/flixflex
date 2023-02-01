@@ -3,9 +3,12 @@ import NavBar from "@/components/navBar";
 import ShowCard from "@/components/showCard";
 import ProtectedRoute from "@/components/protectedRoute";
 import DocumentHead from "@/components/documentHead";
-export default function TopMoviesPage() {
+import Loader from "@/components/loader";
+export default function MoviesPage() {
   const [topMovies, setTopMovie] = useState(null);
   const [popularMovie, setPopluarMovie] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     async function fetchData() {
       const data = await fetch("/api/movie/getTopMovies");
@@ -14,10 +17,14 @@ export default function TopMoviesPage() {
       setTopMovie(results);
       const PopularMoviedata = await fetch("/api/movie/getPopularMovie");
       const reponse = await PopularMoviedata.json();
+      setIsLoading(false);
       setPopluarMovie(reponse.results.slice(0, 10));
     }
     fetchData();
   }, []);
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <DocumentHead title={"Movies"} />
