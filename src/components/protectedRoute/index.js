@@ -6,7 +6,8 @@ export default function ProtectedRoute({ children }) {
   const { user } = useUserAuth();
   console.log("Check user  ", user);
   useLayoutEffect(() => {
-    if (!user) router.push("/login");
-  }, []);
+    if (!user && router.pathname !== "/login") router.push("/login");
+    if (user && router.pathname === "/login") router.push("/");
+  }, [user, router]);
   return children;
 }
