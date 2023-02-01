@@ -99,9 +99,9 @@ export default function TvDetail() {
           onClose={() => setOpen(false)}
         />
         <NavBar />
-        <div classNameName="container mx-auto py-16">
-          <section classNameName="flex flex-col sm:mx-8 md:mx-0 md:flex-row md:items-start lg:justify-center">
-            <section classNameName="px-20 text-center md:pr-8 md:pl-0 lg:w-2/5">
+        <div className="container mx-auto py-16">
+          <section className="flex flex-col sm:mx-8 md:mx-0 md:flex-row md:items-start lg:justify-center">
+            <section className="px-20 text-center md:pr-8 md:pl-0 lg:w-2/5">
               <span
                 style={{
                   boxSizing: "border-box",
@@ -159,7 +159,7 @@ export default function TvDetail() {
                           movieDetail.original_name || ""
                         )
                   }
-                  classNameName="rounded-lg"
+                  className="rounded-lg"
                   style={{
                     position: "absolute",
                     inset: 0,
@@ -182,73 +182,71 @@ export default function TvDetail() {
                 <noscript />
               </span>
             </section>
-            <section classNameName="md:w-3/5">
-              <div classNameName="mt-6 mb-2 text-center md:mt-0 md:mb-4 md:text-left">
-                <h1 classNameName="mb-1 text-3xl font-bold md:mb-3 md:text-5xl">
+            <section className="md:w-3/5">
+              <div className="mt-6 mb-2 text-center md:mt-0 md:mb-4 md:text-left">
+                <h1 className="mb-1 text-3xl font-bold md:mb-3 md:text-5xl">
                   {movieDetail.original_name}{" "}
                 </h1>
-                <p classNameName="text-[17px] font-light">
-                  {movieDetail.tagline}
-                </p>
+                <p className="text-[17px] font-light">{movieDetail.tagline}</p>
               </div>
-              <div classNameName="mb-6 flex items-center justify-between text-left text-sm lg:w-10/12 lg:text-lg">
+              <div className="mb-6 flex items-center justify-between text-left text-sm lg:w-10/12 lg:text-lg">
                 <div>
-                  <p classNameName="mb-1 text-app-placeholder">Season</p>
-                  <p classNameName="text-app-pure-white">
+                  <p className="mb-1 text-app-placeholder">Season</p>
+                  <p className="text-app-pure-white">
                     {movieDetail.number_of_seasons}
                   </p>
                 </div>
                 <div>
-                  <p classNameName="mb-1 text-app-placeholder">Episode</p>
-                  <p classNameName="text-app-pure-white">
+                  <p className="mb-1 text-app-placeholder">Episode</p>
+                  <p className="text-app-pure-white">
                     {movieDetail.number_of_episodes}
                   </p>
                 </div>
                 <div>
-                  <p classNameName="mb-1 text-app-placeholder">Year</p>
-                  <p classNameName="text-app-pure-white">
+                  <p className="mb-1 text-app-placeholder">Year</p>
+                  <p className="text-app-pure-white">
                     {new Date(movieDetail.first_air_date).getFullYear()}
                   </p>
                 </div>
                 <div>
-                  <p classNameName="mb-1 text-app-placeholder">Status</p>
-                  <p classNameName="text-app-pure-white">
-                    {movieDetail.status}
-                  </p>
+                  <p className="mb-1 text-app-placeholder">Status</p>
+                  <p className="text-app-pure-white">{movieDetail.status}</p>
                 </div>
               </div>
-              <div classNameName="mb-6">
-                <h3 classNameName="mb-2 md:text-lg">Genres</h3>
-                <ul classNameName="flex flex-wrap text-xs font-light md:text-sm">
+              <div className="mb-6">
+                <h3 className="mb-2 md:text-lg">Genres</h3>
+                <ul className="flex flex-wrap text-xs font-light md:text-sm">
                   {movieDetail.genres?.map((genre) => (
                     <li
                       key={genre.id}
-                      classNameName="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300"
+                      className="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300"
                     >
                       {genre.name}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div classNameName="mb-6">
-                <h3 classNameName="mb-1 md:text-lg">Overview</h3>
-                <p classNameName="font-light">{movieDetail.overview}</p>
+              <div className="mb-6">
+                <h3 className="mb-1 md:text-lg">Overview</h3>
+                <p className="font-light">{movieDetail.overview}</p>
               </div>
-              <div classNameName="mb-10">
-                <h3 classNameName="mb-2 md:text-lg">Casts</h3>
-                <ul classNameName="flex flex-wrap text-xs md:text-sm">
-                  <li className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                    Default
-                  </li>
-                  <li className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                    Default
-                  </li>
-                  <li className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                    Default
-                  </li>
-                </ul>
-              </div>
-              <div classNameName="mb-10 flex flex-wrap">
+              {
+                //   <div className="mb-10">
+                //   <h3 className="mb-2 md:text-lg">Casts</h3>
+                //   <ul className="flex flex-wrap text-xs md:text-sm">
+                //     <li className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                //       Default
+                //     </li>
+                //     <li className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                //       Default
+                //     </li>
+                //     <li className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                //       Default
+                //     </li>
+                //   </ul>
+                // </div>
+              }
+              <div className="mb-10 flex flex-wrap">
                 <button
                   onClick={() => setOpen(true)}
                   type="button"
