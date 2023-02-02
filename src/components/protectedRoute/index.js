@@ -4,7 +4,6 @@ import { useLayoutEffect } from "react";
 export default function ProtectedRoute({ children }) {
   const router = useRouter();
   const { user } = useUserAuth();
-  console.log("Check user  ", user);
   useLayoutEffect(() => {
     if (!user && router.pathname !== "/login") router.push("/login");
     if (user && router.pathname === "/login") router.push("/");
