@@ -74,7 +74,7 @@ export default function ShowCard({ movieData, mediaType }) {
               ).getFullYear()}
             </p>
             <div className='flex items-center px-[6px] before:content-["•"]'>
-              <span class="uppercase ml-2 bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">
+              <span className="uppercase ml-2 bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">
                 {mediaType}
               </span>
             </div>
