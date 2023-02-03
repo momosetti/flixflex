@@ -13,27 +13,30 @@ export default function MoviesPage() {
   const { page = "1" } = router.query;
   const isNextDataLoad = useRef(true);
 
-  useEffect(() => {
-    async function fetchData() {
+  const fetchData = async () => {
+    if (!topMovies) {
+      // fetch the top movies only for once
       const data = await fetch("/api/movie/getTopMovies");
       const res = await data.json();
       const { results } = res;
-      setTopMovie(results);
-      if (isNextDataLoad.current) {
-        isNextDataLoad.current = false;
-        const popularMovieData = await fetch(
-          `/api/movie/getPopularMovie?page=${
-            Number(page) - 1 >= 1 ? Number(page) - 1 : 1
-          }`
-        );
-        const response = await popularMovieData.json();
-        setMoviesData(response.results);
-        setPopluarMovie(response.results.slice(0, 10));
-      } else {
-        setPopluarMovie(moviesData?.slice(10, 20));
-        isNextDataLoad.current = true;
-      }
+      setTopMovie(results.slice(0, 5));
     }
+    if (isNextDataLoad.current) {
+      const popularMovieData = await fetch(
+        `/api/movie/getPopularMovie?page=${
+          Number(page) - 1 >= 1 ? Number(page) - 1 : 1
+        }`
+      );
+      const response = await popularMovieData.json();
+      setMoviesData(response.results);
+      setPopluarMovie(response.results.slice(0, 10));
+      isNextDataLoad.current = false;
+    } else {
+      setPopluarMovie(moviesData?.slice(10, 20));
+      isNextDataLoad.current = true;
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, [page]);
 
@@ -42,16 +45,16 @@ export default function MoviesPage() {
       <DocumentHead title="Movies" />
       <NavBar />
       <ProtectedRoute>
-        <div class="container mx-auto py-16">
+        <div className="container mx-auto py-16">
           <>
             <div className="container py-5">
-              <div class="flex items-end">
-                <h1 class="text-[35px] font-light py-px sm:py-0 uppercase">
+              <div className="flex items-end">
+                <h1 className="text-[35px] font-light py-px sm:py-0 uppercase">
                   the 5 top movie
                 </h1>
               </div>
               <div className="grid grid-cols-5 gap-4 my-3">
-                {topMovies?.slice(0, 5).map((topMovie) => (
+                {topMovies?.map((topMovie) => (
                   <ShowCard
                     key={topMovie.id}
                     movieData={topMovie}
@@ -61,8 +64,8 @@ export default function MoviesPage() {
               </div>
             </div>
             <div id="movies" className="container py-5">
-              <div class="flex items-end">
-                <h1 class="text-[35px] font-light py-px sm:py-0 uppercase">
+              <div className="flex items-end">
+                <h1 className="text-[35px] font-light py-px sm:py-0 uppercase">
                   Movies
                 </h1>
               </div>
@@ -96,9 +99,9 @@ export default function MoviesPage() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   Previous
@@ -125,9 +128,9 @@ export default function MoviesPage() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                 </button>

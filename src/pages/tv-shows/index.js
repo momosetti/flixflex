@@ -4,7 +4,7 @@ import NavBar from "@/components/navBar";
 import ShowCard from "@/components/showCard";
 import ProtectedRoute from "@/components/protectedRoute";
 import DocumentHead from "@/components/documentHead";
-import Loader from "@/components/loader";
+
 export default function TvPage() {
   const [topTvShows, setTopTvShows] = useState(null);
   const [tvShowsData, setTvShowsData] = useState(null);
@@ -13,27 +13,30 @@ export default function TvPage() {
   const { page = "1" } = router.query;
   const isNextDataLoad = useRef(true);
 
-  useEffect(() => {
-    async function fetchData() {
+  const fetchData = async () => {
+    if (!topTvShows) {
+      // fetch the top tv only for once
       const data = await fetch("/api/tv/getTopTv");
       const res = await data.json();
       const { results } = res;
       setTopTvShows(results.slice(0, 5));
-      if (isNextDataLoad.current) {
-        isNextDataLoad.current = false;
-        const popularTvdata = await fetch(
-          `/api/tv/getPopularTv?page=${
-            Number(page) - 1 >= 1 ? Number(page) - 1 : 1
-          }`
-        );
-        const response = await popularTvdata.json();
-        setTvShowsData(response.results);
-        setPopluarTv(response.results.slice(0, 10));
-      } else {
-        setPopluarTv(tvShowsData?.slice(10, 20));
-        isNextDataLoad.current = true;
-      }
     }
+    if (isNextDataLoad.current) {
+      const popularTvdata = await fetch(
+        `/api/tv/getPopularTv?page=${
+          Number(page) - 1 >= 1 ? Number(page) - 1 : 1
+        }`
+      );
+      const response = await popularTvdata.json();
+      setTvShowsData(response.results);
+      setPopluarTv(response.results.slice(0, 10));
+      isNextDataLoad.current = false;
+    } else {
+      setPopluarTv(tvShowsData?.slice(10, 20));
+      isNextDataLoad.current = true;
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, [page]);
 
