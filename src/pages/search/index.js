@@ -30,9 +30,9 @@ export default function SearchPage() {
         <DocumentHead title={`Search`} />
         <NavBar />
         <div className="container mx-auto mt-[2em]">
-          <div className="flex items-end">
+          <div id="search" className="flex items-end">
             <h1 className="text-[20px] font-bold py-px sm:py-0 text-light">
-              We find {searchResult?.total_results} results for your search
+              {q ? `Your search for ${q}` : "Search"}
             </h1>
           </div>
           <div className="grid grid-cols-4 gap-4 my-3">
@@ -63,7 +63,7 @@ export default function SearchPage() {
               }
               className={`inline-flex ${
                 page === "1" ? "cursor-not-allowed" : null
-              } items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+              } items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-primary-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
             >
               <svg
                 aria-hidden="true"
@@ -82,14 +82,14 @@ export default function SearchPage() {
             </Link>
             <Link
               onClick={() => {
-                if (page < searchResult?.total_pages) setIsLoading(true);
+                document.getElementById("search").scrollIntoView();
               }}
               href={
                 page < searchResult?.total_pages
                   ? `/search?q=${q}&page=${Number(page) + 1}`
                   : "#"
               }
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-primary-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               Next
               <svg
