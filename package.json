@@ -4,7 +4,7 @@
   "private": true,
   "repository": {
   "type": "git",
-  "url": https://github.com/momosetti/flixflex.git"
+  "url": "https://github.com/momosetti/flixflex.git"
 },
   "scripts": {
     "dev": "next dev",
