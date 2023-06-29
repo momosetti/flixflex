@@ -3,7 +3,7 @@ module.exports = {
     { name: "dev", prerelease: "rc" },
     { name: "main", prerelease: false }
   ],
-  repositoryUrl: "https://github.com/your-username/your-repo",
+  repositoryUrl: "https://github.com/momosetti/flixflex.git",
   plugins: [
     ["@semantic-release/commit-analyzer", {
       preset: "conventionalcommits",
