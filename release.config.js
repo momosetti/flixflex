@@ -6,7 +6,7 @@ module.exports = {
   repositoryUrl: "https://github.com/momosetti/flixflex.git",
   plugins: [
     ["@semantic-release/commit-analyzer", {
-      preset: "conventionalcommits",
+      preset: "angular",
       releaseRules: [
         { type: "feat", release: "minor" },
         { type: "fix", release: "patch" },
@@ -21,7 +21,7 @@ module.exports = {
       }
     }],
     ["@semantic-release/release-notes-generator", {
-      preset: "conventionalcommits",
+      preset: "angular",
       writerOpts: {
         commitsSort: ["subject", "scope"],
         groupBy: "type",
@@ -37,7 +37,6 @@ module.exports = {
         }
       }
     }],
-    "@semantic-release/changelog",
     ["@semantic-release/git", {
       assets: ["package.json", "CHANGELOG.md"],
       message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
