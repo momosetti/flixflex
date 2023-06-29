@@ -1,7 +1,7 @@
 module.exports = {
   branches: [
     { name: "dev", prerelease: "rc" },
-    { name: "main", prerelease: false }
+    { name: "main" }
   ],
   repositoryUrl: "https://github.com/momosetti/flixflex.git",
   plugins: [
@@ -36,6 +36,15 @@ module.exports = {
           "*": "Miscellaneous"
         }
       }
+    }],
+    ["@semantic-release/changelog", {
+      changelogFile: "RELEASE.md" // Specify the file name for the release notes
+    }],
+    ["@semantic-release/github", {
+      assets: [{
+        path: "RELEASE.md", // Specify the release notes file to be uploaded
+        label: "Release Notes" // Specify the label for the release notes file
+      }]
     }],
     ["@semantic-release/git", {
       assets: ["package.json", "CHANGELOG.md"],
