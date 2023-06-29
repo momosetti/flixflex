@@ -1,7 +1,7 @@
 module.exports = {
   branches: [
     { name: "dev", prerelease: "rc" },
-    { name: "main" }
+    { name: "main", prerelease: false }
   ],
   repositoryUrl: "https://github.com/momosetti/flixflex.git",
   plugins: [
