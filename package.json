@@ -29,6 +29,7 @@
     "tailwindcss": "^3.2.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/commit-analyzer": "^10.0.1"
+    "@semantic-release/commit-analyzer": "^10.0.1",
+    "conventional-changelog-conventionalcommits" : "^5.0.1"
   }
 }
