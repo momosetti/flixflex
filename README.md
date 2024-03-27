@@ -1,7 +1,7 @@
+![image](https://github.com/momosetti/flixflex/assets/29590613/4ebc2aab-5aa8-4c21-a458-5ba24764c45d)
 # FlixFlex
 
 A movie app built with Next.js and TailwindCSS using Firebase for authentication.
-![image](https://github.com/momosetti/flixflex/assets/29590613/4ebc2aab-5aa8-4c21-a458-5ba24764c45d)
 
 ## Deployment
 
