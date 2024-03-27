@@ -2,11 +2,18 @@
 # FlixFlex
 
 A movie app built with Next.js and TailwindCSS using Firebase for authentication.
+## Features
+
+- Search movies or TV shows
+- View movie or TV show details
+- View the top-rated movies and TV shows
+- Watch trailers for movies or TV shows
+- Log in using Firebase
 
 ## Deployment
 
 The project is deployed on Vercel at the following link: https://flixflex-app.vercel.app
-To test the app use the following credentials to login:
+To test the app use the following credentials to log in:
 email: `demo@example.com`
 password: `Demo2023!`
 
@@ -20,9 +27,9 @@ password: `Demo2023!`
 
 ## Why These Technologies Were Chosen
 
-**Next.js** was chosen for its ability to provide server-side rendering and optimized performance. This is important for delivering a fast and responsive user experience, especially for a movie app that requires fetching and rendering large amounts of data. Also this is important for FlixFlex because it helps us avoid exposing the TMDb API key, and use the `api` folder in Next.js to create custom APIs.
+**Next.js** was chosen for its ability to provide server-side rendering and optimized performance. This is important for delivering a fast and responsive user experience, especially for a movie app that requires fetching and rendering large amounts of data. Also, this is important for FlixFlex because it helps us avoid exposing the TMDb API key, and use the `api` folder in Next.js to create custom APIs.
 
-**TailwindCSS** was chosen for its utility-first approach to CSS, allowing for rapid development of custom designs. This was crucial in order to meet the project's deadline and ensure a consistent design across all pages.
+**TailwindCSS** was chosen for its utility-first approach to CSS, allowing for the rapid development of custom designs. This was crucial in order to meet the project's deadline and ensure a consistent design across all pages.
 
 **Firebase** was chosen for its ease of use and robust authentication features. It allowed for a simple and secure login process for users, without the need for building a backend from scratch.
 
@@ -43,14 +50,6 @@ To run FlixFlex locally, follow these steps:
 3.  Install the dependencies `yarn install`
 4.  Start the development server `yarn dev`
 5.  Open your browser and navigate to `http://localhost:3000`
-
-## Features
-
-- Search movies or TV shows
-- View movie or TV show details
-- View the top rated movies and TV shows
-- Watch trailers of movies or TV shows
-- Login using Firebase
 
 ## Contributing
 
